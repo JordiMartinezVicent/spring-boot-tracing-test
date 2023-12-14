@@ -1,0 +1,87 @@
+= Spring Boot Tracing Test 
+
+_Spring Boot Tracing Test_ aims to ease the creation of integration tests for Spring Boot components which uses micrometer-tracing. 
+
+It tries to be the bridge between the tracing auto-configuration provided by Spring Boot and the testing tools provided by micrometer-tracing.  
+
+[IMPORTANT] 
+This library is intended to *serve as an example* of how a project can test micrometer traces in a Spring Boot environment. It is no (at least yet) intended to be imported directly from a project as it is right now. 
+
+
+The main features that Spring Boot Tracing Test provide are:
+
+ * Ease the creation of testing SpringBoot components which use micrometer-tracing  
+ * The tests are independent of the tracing vendor used at the project. (Currently otel is supported!)
+ * Executes, and so they can be tested, the vendor specific components. Although the tests are not coupled to the vendor, they are executed with the vendor technology, so these kind of components can be tested. 
+
+
+== Example of use
+
+```java 
+
+
+@SpringBootTest(classes = TracingTestWithSBTestConfig.class)
+@TracingTest
+@EnableAutoConfiguration
+class TracingTestWithSBTests {
+
+	@Autowired
+	private InstrumentedComponent instrumentedComponent;
+
+	@Spans
+	private SpanCollector spanCollector;
+
+	@Test
+	void smoke() {
+
+		this.instrumentedComponent.doSomethingWithTrace();
+
+		TracingAssertions.assertThat(this.spanCollector.getFinishedSpans())
+			.hasNumberOfSpansEqualTo(1)
+			.hasASpanWithName("instrumented-component-span");
+
+	}
+
+	@Test
+	void assertTags() {
+
+		this.instrumentedComponent.doSomethingWithTrace();
+
+		TracingAssertions.assertThat(this.spanCollector.getFinishedSpans())
+			.hasNumberOfSpansEqualTo(1)
+			.assertThatASpanWithNameEqualTo("instrumented-component-span")
+			.hasTag("tag", "tag-value");
+
+	}
+
+	static class InstrumentedComponent {
+
+		@Autowired
+		private Tracer tracer;
+
+		void doSomethingWithTrace() {
+			final Span rootSpan = this.tracer.nextSpan().name("instrumented-component-span").tag("tag", "tag-value");
+
+			try (var spanInScope = this.tracer.withSpan(rootSpan.start())) {
+				// Do something in span
+			}
+			finally {
+				rootSpan.end();
+			}
+		}
+
+	}
+
+	@Configuration(proxyBeanMethods = false)
+	static class TracingTestWithSBTestConfig {
+
+		@Bean
+		InstrumentedComponent instrumentedComponent() {
+			return new InstrumentedComponent();
+		}
+
+	}
+
+}
+
+```
