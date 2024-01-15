@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jordi.tracing.test.test.collector;
+package org.jordi.tracing.test.collector;
 
 import java.util.List;
 

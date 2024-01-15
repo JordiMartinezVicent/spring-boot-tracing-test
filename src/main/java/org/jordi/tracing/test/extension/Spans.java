@@ -24,7 +24,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.jordi.tracing.test.TracingTest;
-import org.jordi.tracing.test.test.collector.SpanCollector;
+import org.jordi.tracing.test.collector.SpanCollector;
 
 /**
  * Injects the {@link SpanCollector} into the test.

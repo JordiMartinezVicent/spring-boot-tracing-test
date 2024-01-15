@@ -21,8 +21,8 @@ import io.micrometer.tracing.Tracer;
 import io.micrometer.tracing.test.simple.TracingAssertions;
 import org.jordi.test.tracing.test.TracingOtelTestWithSBTests.TracingTestWithSBTestConfig;
 import org.jordi.tracing.test.TracingTest;
+import org.jordi.tracing.test.collector.SpanCollector;
 import org.jordi.tracing.test.extension.Spans;
-import org.jordi.tracing.test.test.collector.SpanCollector;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
