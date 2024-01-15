@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jordi.tracing.test.collector.brave;
+package org.jordi.tracing.test.test.collector.brave;
 
 import java.util.ArrayList;
 import java.util.List;

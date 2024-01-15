@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.jordi.tracing.test.collector.brave;
+package org.jordi.tracing.test.test.collector.brave;
 
 import java.util.List;
 
 import io.micrometer.tracing.brave.bridge.BraveFinishedSpan;
 import io.micrometer.tracing.exporter.FinishedSpan;
-import org.jordi.tracing.test.collector.SpanCollector;
+import org.jordi.tracing.test.test.collector.SpanCollector;
 
 /**
  * {@link SpanCollector} which returns the spans collected by a

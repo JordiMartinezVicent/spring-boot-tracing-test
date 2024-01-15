@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jordi.tracing.extension;
+package org.jordi.tracing.test.extension;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -26,7 +26,7 @@ import io.micrometer.tracing.otel.bridge.OtelCurrentTraceContext;
 import io.micrometer.tracing.otel.bridge.OtelTracer;
 import io.opentelemetry.api.GlobalOpenTelemetry;
 import org.apache.commons.lang3.reflect.FieldUtils;
-import org.jordi.tracing.test.collector.SpanCollector;
+import org.jordi.tracing.test.test.collector.SpanCollector;
 import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
@@ -50,7 +50,7 @@ import org.springframework.util.function.SingletonSupplier;
  * </p>
  *
  * @author Jordi Martinez Vicent
- * @since 5.5.0
+ * @since 1.0.0
  */
 public class TracingExtension implements AfterEachCallback, BeforeAllCallback, AfterAllCallback, ParameterResolver,
 		TestInstancePostProcessor {

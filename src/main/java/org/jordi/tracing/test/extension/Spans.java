@@ -14,34 +14,28 @@
  * limitations under the License.
  */
 
-package org.jordi.tracing.test.collector;
+package org.jordi.tracing.test.extension;
 
-import java.util.List;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import io.micrometer.tracing.exporter.FinishedSpan;
+import org.jordi.tracing.test.TracingTest;
+import org.jordi.tracing.test.test.collector.SpanCollector;
 
 /**
- * Component to collect the spans created at the test.
+ * Injects the {@link SpanCollector} into the test.
  *
  * @author Jordi Martinez Vicent
- * @since 1.0.0
+ * @see TracingTest
  */
-public interface SpanCollector {
-
-	/**
-	 * Returns the collected spans.
-	 * @return the collected spans
-	 */
-	List<FinishedSpan> getFinishedSpans();
-
-	/**
-	 * Clears the internal {@code List} of finished {@code Span}s.
-	 */
-	void reset();
-
-	/**
-	 * Closes this {@link SpanCollector}, releasing any resources.
-	 */
-	void close();
+@Target({ ElementType.FIELD, ElementType.PARAMETER })
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
+public @interface Spans {
 
 }

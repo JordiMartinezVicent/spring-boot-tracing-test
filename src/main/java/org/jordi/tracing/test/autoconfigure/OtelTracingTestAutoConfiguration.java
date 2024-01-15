@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jordi.tracing.autoconfigure;
+package org.jordi.tracing.test.autoconfigure;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -25,8 +25,8 @@ import io.opentelemetry.sdk.trace.SdkTracerProviderBuilder;
 import io.opentelemetry.sdk.trace.SpanProcessor;
 import io.opentelemetry.sdk.trace.export.BatchSpanProcessor;
 import io.opentelemetry.sdk.trace.export.SimpleSpanProcessor;
-import org.jordi.tracing.test.collector.SpanCollector;
-import org.jordi.tracing.test.collector.otel.OtelInMemoryExporterSpanCollector;
+import org.jordi.tracing.test.test.collector.SpanCollector;
+import org.jordi.tracing.test.test.collector.otel.OtelInMemoryExporterSpanCollector;
 
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.actuate.autoconfigure.tracing.SdkTracerProviderBuilderCustomizer;

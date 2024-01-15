@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jordi.tracing.extension;
+package org.jordi.tracing.test.extension;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

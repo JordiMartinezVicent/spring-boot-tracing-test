@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.jordi.tracing.autoconfigure;
+package org.jordi.tracing.test.autoconfigure;
 
 import brave.handler.SpanHandler;
 import brave.sampler.Sampler;
-import org.jordi.tracing.test.collector.SpanCollector;
-import org.jordi.tracing.test.collector.brave.BraveInMemorySpanHandlerCollector;
-import org.jordi.tracing.test.collector.brave.InMemorySpanHandler;
+import org.jordi.tracing.test.test.collector.SpanCollector;
+import org.jordi.tracing.test.test.collector.brave.BraveInMemorySpanHandlerCollector;
+import org.jordi.tracing.test.test.collector.brave.InMemorySpanHandler;
 
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
