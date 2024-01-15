@@ -14,47 +14,46 @@
  * limitations under the License.
  */
 
-package org.jordi.test.tracing.extension.otel;
+package org.jordi.test.tracing.extension.brave;
 
 import java.util.List;
 
+import io.micrometer.tracing.brave.bridge.BraveFinishedSpan;
 import io.micrometer.tracing.exporter.FinishedSpan;
-import io.micrometer.tracing.otel.bridge.OtelFinishedSpan;
-import io.opentelemetry.sdk.testing.exporter.InMemorySpanExporter;
 import org.jordi.test.tracing.extension.SpanCollector;
 
 /**
- * {@link SpanCollector} which returns the spans exported by
- * a{@link InMemorySpanExporter}.
+ * {@link SpanCollector} which returns the spans collected by a
+ * {@link InMemorySpanHandler}.
  *
  * @author Jordi Martinez Vicent
  * @since 1.0.0
  */
-public class OtelInMemoryExporterSpanCollector implements SpanCollector {
+public class BraveInMemorySpanHandlerCollector implements SpanCollector {
 
-	private final InMemorySpanExporter inMemorySpanExporter;
+	private final InMemorySpanHandler spanHandler;
 
 	/**
-	 * Constructor.
-	 * @param inMemorySpanExporter the InMemorySpanExporter
+	 * Constructor
+	 * @param spanHandler the spanHandler
 	 */
-	public OtelInMemoryExporterSpanCollector(final InMemorySpanExporter inMemorySpanExporter) {
-		this.inMemorySpanExporter = inMemorySpanExporter;
+	public BraveInMemorySpanHandlerCollector(final InMemorySpanHandler spanHandler) {
+		this.spanHandler = spanHandler;
 	}
 
 	@Override
 	public List<FinishedSpan> getFinishedSpans() {
-		return this.inMemorySpanExporter.getFinishedSpanItems().stream().map(OtelFinishedSpan::fromOtel).toList();
+		return this.spanHandler.spans().stream().map(BraveFinishedSpan::fromBrave).toList();
 	}
 
 	@Override
 	public void reset() {
-		this.inMemorySpanExporter.reset();
+		this.spanHandler.clear();
 	}
 
 	@Override
 	public void close() {
-		this.inMemorySpanExporter.close();
+		this.spanHandler.clear();
 	}
 
 }

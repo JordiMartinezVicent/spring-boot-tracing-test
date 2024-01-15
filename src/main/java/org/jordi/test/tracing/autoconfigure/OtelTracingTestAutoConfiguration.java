@@ -32,6 +32,7 @@ import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.actuate.autoconfigure.tracing.SdkTracerProviderBuilderCustomizer;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -42,6 +43,9 @@ import org.springframework.context.annotation.Bean;
  */
 @AutoConfiguration
 @ConditionalOnClass(SdkTracerProvider.class)
+// The ConditionalOnProperty is needed because at the example we use both providers. In a
+// real application it won't be necessary
+@ConditionalOnProperty(value = "tracing.provider", havingValue = "otel", matchIfMissing = true)
 public class OtelTracingTestAutoConfiguration {
 
 	private static AtomicInteger tracerCounter = new AtomicInteger(0);

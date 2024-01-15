@@ -19,21 +19,24 @@ package org.jordi.test.tracing;
 import io.micrometer.tracing.Span;
 import io.micrometer.tracing.Tracer;
 import io.micrometer.tracing.test.simple.TracingAssertions;
-import org.jordi.test.tracing.TracingTestWithSBTests.TracingTestWithSBTestConfig;
+import org.jordi.test.tracing.TracingBraveTestWithSBTests.TracingTestWithSBTestConfig;
 import org.jordi.test.tracing.extension.SpanCollector;
 import org.jordi.test.tracing.extension.Spans;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.tracing.OpenTelemetryAutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@SpringBootTest(classes = TracingTestWithSBTestConfig.class)
+@SpringBootTest(classes = TracingTestWithSBTestConfig.class, properties = "tracing.provider=brave")
 @TracingTest
-@EnableAutoConfiguration
-class TracingTestWithSBTests {
+// Exlusion only neede because we have both providers. In a real project only should be
+// one of them
+@EnableAutoConfiguration(exclude = OpenTelemetryAutoConfiguration.class)
+class TracingBraveTestWithSBTests {
 
 	@Autowired
 	private InstrumentedComponent instrumentedComponent;
