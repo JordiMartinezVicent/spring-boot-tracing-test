@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jordi.test.tracing;
+package org.jordi.tracing;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -23,7 +23,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.jordi.test.tracing.extension.TracingExtension;
+import org.jordi.tracing.extension.TracingExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;

@@ -20,8 +20,9 @@ import io.micrometer.tracing.Span;
 import io.micrometer.tracing.Tracer;
 import io.micrometer.tracing.test.simple.TracingAssertions;
 import org.jordi.test.tracing.TracingOtelTestWithSBTests.TracingTestWithSBTestConfig;
-import org.jordi.test.tracing.extension.SpanCollector;
-import org.jordi.test.tracing.extension.Spans;
+import org.jordi.tracing.TracingTest;
+import org.jordi.tracing.extension.Spans;
+import org.jordi.tracing.test.collector.SpanCollector;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.jordi.test.tracing.extension.otel;
+package org.jordi.tracing.test.collector.otel;
 
 import java.util.List;
 
 import io.micrometer.tracing.exporter.FinishedSpan;
 import io.micrometer.tracing.otel.bridge.OtelFinishedSpan;
 import io.opentelemetry.sdk.testing.exporter.InMemorySpanExporter;
-import org.jordi.test.tracing.extension.SpanCollector;
+import org.jordi.tracing.test.collector.SpanCollector;
 
 /**
  * {@link SpanCollector} which returns the spans exported by

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jordi.test.tracing.extension;
+package org.jordi.tracing.extension;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -23,18 +23,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.jordi.test.tracing.TracingTest;
-
-/**
- * Injects the {@link SpanCollector} into the test.
- *
- * @author Jordi Martinez Vicent
- * @see TracingTest
- */
 @Target({ ElementType.FIELD, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-public @interface Spans {
+public @interface TestTracer {
 
 }
