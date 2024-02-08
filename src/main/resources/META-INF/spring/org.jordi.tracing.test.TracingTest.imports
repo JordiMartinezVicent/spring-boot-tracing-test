@@ -1,0 +1,2 @@
+org.jordi.tracing.test.autoconfigure.OtelTracingTestAutoConfiguration
+org.jordi.tracing.test.autoconfigure.BraveTracingTestAutoConfiguration
